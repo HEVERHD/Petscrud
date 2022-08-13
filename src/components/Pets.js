@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { getPets } from "../services";
+import { getPets, deletePet, createPet, updatePet } from "../services";
+import { GrUpdate } from "react-icons/gr";
+import { AiFillDelete } from "react-icons/ai";
 
 export function Pets() {
   const [pets, setPets] = useState([]);
@@ -13,6 +15,17 @@ export function Pets() {
     }
     fetchData();
   }, []);
+
+  const handleUpdate = async (pet) => {
+    const { data } = await updatePet(pet);
+    setPets(pets.map((p) => (p._id === data._id ? data : p)));
+  };
+
+  const handleDelete = async (id) => {
+    await deletePet(id);
+    const newPets = pets.filter((pet) => pet._id !== id);
+    setPets(newPets);
+  };
 
   return (
     <>
@@ -47,19 +60,23 @@ export function Pets() {
                       Specie : <b>{pets.specie ? pets.specie : "No Specie"}</b>
                     </p>
                   </div>
-                  <button
-                    data-movie-id={pets.specie}
-                    className="btn btn-primary btn-block"
-                  >
-                    delete
-                  </button>{" "}
-                  <br />
-                  <button
-                    data-movie-id={pets.specie}
-                    className="btn btn-primary btn-block"
-                  >
-                    delete
-                  </button>
+                  <div className="card-footer">
+                    <button
+                      data-movie-id={pets.specie}
+                      className="btn btn-primary btn-block"
+                    >
+                      <GrUpdate />
+                      update pet
+                    </button>{" "}
+                    <br />
+                    <button
+                      onClick={() => handleDelete(pets._id)}
+                      className="btn btn-danger btn-block"
+                    >
+                      <AiFillDelete />
+                      delete pet
+                    </button>
+                  </div>
                   {/* <div className="card-footer text-center my-2">
                   <Link
                     to={`/detalle?movieID=${oneMovie.id}`}

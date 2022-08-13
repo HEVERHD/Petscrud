@@ -24,9 +24,9 @@ export const updatePet = (pet) => {
 };
 
 //service to delete a pet
-export const deletePet = (pet) => {
+export const deletePet = (_id) => {
   return axios.delete(
-    `${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_KEY}/pets/${pet._id}`
+    `${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_KEY}/pets/${_id}`
   );
 };
 
