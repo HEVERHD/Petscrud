@@ -16,13 +16,12 @@ export const createPet = (pet) => {
 };
 
 //service to update a pet
-export const updatePet = (pet) => {
+export const updatePet = (id, pet) => {
   return axios.put(
-    `${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_KEY}/pets/${pet._id}`,
+    `${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_KEY}/pets/${id}`,
     pet
   );
 };
-
 //service to delete a pet
 export const deletePet = (_id) => {
   return axios.delete(

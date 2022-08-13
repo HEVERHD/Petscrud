@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getPets, deletePet, createPet, updatePet } from "../services";
+import { getPets, deletePet, updatePet } from "../services";
 import { GrUpdate } from "react-icons/gr";
 import { AiFillDelete } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export function Pets() {
   const [pets, setPets] = useState([]);
@@ -16,9 +17,14 @@ export function Pets() {
     fetchData();
   }, []);
 
-  const handleUpdate = async (pet) => {
-    const { data } = await updatePet(pet);
-    setPets(pets.map((p) => (p._id === data._id ? data : p)));
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      let res = await updatePet(e.target.id.value, e.target.name.value);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleDelete = async (id) => {
@@ -61,14 +67,12 @@ export function Pets() {
                     </p>
                   </div>
                   <div className="card-footer">
-                    <button
-                      data-movie-id={pets.specie}
-                      className="btn btn-primary btn-block"
-                    >
-                      <GrUpdate />
-                      update pet
-                    </button>{" "}
-                    <br />
+                    <Link to={`/update/${pets._id}`}>
+                      <li className="btn btn-primary">
+                        <GrUpdate /> Update
+                      </li>
+                    </Link>
+                    &nbsp;
                     <button
                       onClick={() => handleDelete(pets._id)}
                       className="btn btn-danger btn-block"

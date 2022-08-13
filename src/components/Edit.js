@@ -1,16 +1,30 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { createPet } from "../services";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { updatePet } from "../services";
 import Swal from "sweetalert2";
+
 import { MdAddCircle } from "react-icons/md";
 
-export const Form = () => {
+export const Edit = () => {
+  const params = useParams();
+
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
-  const [specie, setPecie] = useState("");
+  const [specie, setSpecie] = useState("");
 
   const navigate = useNavigate();
-
+  useEffect(() => {
+    async function getPet() {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_KEY}/pets/${params.id}`
+      );
+      setName(data.name);
+      setAge(data.age);
+      setSpecie(data.specie);
+    }
+    getPet();
+  }, [params.id]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -42,12 +56,12 @@ export const Form = () => {
     }
 
     const pet = { name, age, specie };
-    const { data } = await createPet(pet);
+    const { data } = await updatePet(params.id, pet);
     console.log(data);
     Swal.fire({
       icon: "success",
       title: "Success!",
-      text: "Pet created successfully!",
+      text: "Pet updated successfully!",
     }).then((result) => {
       if (result.value) {
         navigate("/petslist");
@@ -56,70 +70,51 @@ export const Form = () => {
 
     setName("");
     setAge("");
-    setPecie("");
+    setSpecie("");
   };
-
   return (
     <div className="container">
       <div className="row">
-        <div className="col-md-6 m-auto">
-          <div className="card card-body mt-5">
+        <div className="col-md-6 offset-md-3">
+          <div className="card card-body">
             <h2 className="text-center">
-              <i className="fas fa-user-plus"></i> Create Pet
+              <MdAddCircle /> Edit Pet
             </h2>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                createPet({ name, age });
-                setName("");
-                setAge("");
-              }}
-            >
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label>Name</label>
+                <label htmlFor="name">Name</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Enter Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
-
               <div className="form-group">
-                <label>Age</label>
+                <label htmlFor="age">Age</label>
                 <input
                   type="number"
                   className="form-control"
-                  placeholder="Enter Age"
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
                 />
               </div>
-
               <div className="form-group">
                 <label htmlFor="specie">Specie</label>
                 <select
                   className="form-control"
                   value={specie}
-                  onChange={(e) => setPecie(e.target.value)}
+                  onChange={(e) => setSpecie(e.target.value)}
                 >
                   <option value="">Select a specie</option>
                   <option value="Dog">Dog</option>
                   <option value="Cat">Cat</option>
                 </select>
               </div>
-            </form>{" "}
-            <br />
-            <button
-              onClick={handleSubmit}
-              type="submit"
-              className="btn btn-success btn-block text-center"
-              alert="success"
-            >
-              Create
-              <MdAddCircle />
-            </button>
+              <button type="submit" className="btn btn-primary btn-block">
+                Save
+              </button>
+            </form>
           </div>
         </div>
       </div>

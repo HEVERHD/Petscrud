@@ -9,6 +9,7 @@ import "./css/bootstrap.min.css";
 import { Landing } from "./components/Landing";
 import { Header } from "./components/Header";
 import { Form } from "./components/Form";
+import { Edit } from "./components/Edit";
 
 function App() {
   return (
@@ -18,8 +19,7 @@ function App() {
         <Route exact path="/" element={<Landing />} />
         <Route exact path="/petslist" element={<Pets />} />
         <Route exact path="/create" element={<Form />} />
-        {/* <Route exact path="/detalle" element={<Detalle />} />
-        <Route exact path="/resultado" element={<Resultado />} /> */}
+        <Route exact path="/update/:id" element={<Edit />} />
       </Routes>
     </div>
   );
