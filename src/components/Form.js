@@ -1,11 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { createPet } from "../services";
 import Swal from "sweetalert2";
+import { MdAddCircle } from "react-icons/md";
 
 export const Form = () => {
   const [name, setName] = React.useState("");
   const [age, setAge] = React.useState("");
   const [specie, setPecie] = React.useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +32,7 @@ export const Form = () => {
       return;
     }
 
-    if (specie !== "dog" && specie !== "cat") {
+    if (specie !== "Dog" && specie !== "Cat") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -39,7 +43,20 @@ export const Form = () => {
 
     const pet = { name, age, specie };
     const { data } = await createPet(pet);
-    console.log("data", data);
+    console.log(data);
+    Swal.fire({
+      icon: "success",
+      title: "Success!",
+      text: "Pet created successfully!",
+    }).then((result) => {
+      if (result.value) {
+        navigate("/petslist");
+      }
+    });
+
+    setName("");
+    setAge("");
+    setPecie("");
   };
 
   return (
@@ -80,7 +97,7 @@ export const Form = () => {
                 />
               </div>
 
-              {/* <div className="form-group">
+              <div className="form-group">
                 <label>Specie</label>
                 <input
                   type="text"
@@ -89,18 +106,6 @@ export const Form = () => {
                   value={specie}
                   onChange={(e) => setPecie(e.target.value)}
                 />
-              </div> */}
-
-              <div className="form-group">
-                <label>Specie</label>
-                <select
-                  className="form-control"
-                  value={specie}
-                  onChange={(e) => setPecie(e.target.value)}
-                >
-                  <option value="dog">Dog</option>
-                  <option value="cat">Cat</option>
-                </select>
               </div>
             </form>{" "}
             <br />
@@ -108,8 +113,10 @@ export const Form = () => {
               onClick={handleSubmit}
               type="submit"
               className="btn btn-success btn-block text-center"
+              alert="success"
             >
               Create
+              <MdAddCircle />
             </button>
           </div>
         </div>

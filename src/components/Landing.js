@@ -16,12 +16,14 @@ export const Landing = () => {
             <h1 className="shawow-sm tex-success mt-5 p-3 text-center rounded">
               {" "}
               Welcome to Pet's World
+            </h1>
+            <div className=" text-center">
               <button className="btn btn-success">
                 <Link to="/petslist">
                   <b className="text-white">Start</b>
                 </Link>
               </button>
-            </h1>
+            </div>
           </Col>
         </Row>
       </Container>

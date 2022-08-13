@@ -45,7 +45,7 @@ export function Pets() {
               >
                 <div className="card my-3">
                   <img
-                    src="https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                    src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
                     className=" img-rounded rounded float-left card-img-top img-thumbnail img-fluid"
                     alt="..."
                   />
@@ -77,14 +77,6 @@ export function Pets() {
                       delete pet
                     </button>
                   </div>
-                  {/* <div className="card-footer text-center my-2">
-                  <Link
-                    to={`/detalle?movieID=${oneMovie.id}`}
-                    className="btn btn-primary"
-                  >
-                    Mas informacion
-                  </Link>
-                </div> */}
                 </div>
               </div>
             );
