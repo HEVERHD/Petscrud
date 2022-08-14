@@ -1,14 +1,27 @@
-.favorite-btn {
-  width: 30px;
-  height: 30px;
-  background-color: aliceblue;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.back {
+  background-color: #f5f5f5;
+  background-image: url("../assets/petslanding.jpg");
+}
+.img {
   position: absolute;
-  right: 10px;
-  top: 10px;
-  border: none;
-  font-size: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  opacity: 0.2;
+  z-index: -1;
+}
+.back h1 {
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10%;
+}
+.back h2 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10%;
 }

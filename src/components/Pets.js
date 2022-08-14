@@ -17,16 +17,6 @@ export function Pets() {
     fetchData();
   }, []);
 
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    try {
-      let res = await updatePet(e.target.id.value, e.target.name.value);
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleDelete = async (id) => {
     await deletePet(id);
     const newPets = pets.filter((pet) => pet._id !== id);
