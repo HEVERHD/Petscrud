@@ -2,16 +2,12 @@ import React, { useEffect, useState } from "react";
 import { getPets, deletePet } from "../services";
 import { GrUpdate } from "react-icons/gr";
 import { AiFillDelete } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { NoPets } from "./NoPets";
 import Swal from "sweetalert2";
 
 export function Pets() {
-  const navigate = useNavigate();
-
   const [pets, setPets] = useState([]);
-
-  console.log("pets", pets);
 
   useEffect(() => {
     async function fetchData() {
@@ -24,27 +20,20 @@ export function Pets() {
   const handleDelete = async (id) => {
     await deletePet(id);
     const newPets = pets.filter((pet) => pet._id !== id);
-    setPets(newPets);
     Swal.fire({
-      title: "Deleted!",
-      text: "Your file has been deleted.",
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
       icon: "warning",
-      showCancelButton: false,
+      showCancelButton: true,
       confirmButtonColor: "#3085d6",
-      confirmButtonText: "OK",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          icon: "success",
-          title: "Success!",
-          text: "Pet deleted successfully!",
-        }).then((result) => {
-          if (result.value) {
-            navigate("/petslist");
-          }
-        });
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
     });
+    setPets(newPets);
   };
 
   return (
@@ -85,19 +74,19 @@ export function Pets() {
                           <b>{pets.specie ? pets.specie : "No Specie"}</b>
                         </p>
                       </div>
-                      <div className="card-footer">
+                      <div className="card-footer text-center">
                         <Link to={`/update/${pets._id}`}>
                           <li className="btn btn-primary">
                             <GrUpdate /> Update
                           </li>
-                        </Link>
-                        &nbsp;
+                        </Link>{" "}
+                        <br />
                         <button
                           onClick={() => handleDelete(pets._id)}
-                          className="btn btn-danger btn-block"
+                          className="btn btn-danger btn-block text-center my-2"
                         >
                           <AiFillDelete />
-                          delete pet
+                          delete
                         </button>
                       </div>
                     </div>

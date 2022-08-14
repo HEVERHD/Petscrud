@@ -10,7 +10,6 @@ import { Landing } from "./components/Landing";
 import { Header } from "./components/Header";
 import { Form } from "./components/Form";
 import { Edit } from "./components/Edit";
-import img from "./assets/imgbody.jpg";
 
 function App() {
   return (
