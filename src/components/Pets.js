@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { getPets, deletePet } from "../services";
 import { GrUpdate } from "react-icons/gr";
 import { AiFillDelete } from "react-icons/ai";
+import { MdAddCircle } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { NoPets } from "./NoPets";
 import Swal from "sweetalert2";
+import "../css/app.css";
 
 export function Pets() {
   const [pets, setPets] = useState([]);
@@ -48,6 +50,9 @@ export function Pets() {
                 <b> Pets List</b>
               </h1>
             </div>
+            <Link to="/create" className="div-flot">
+              <MdAddCircle className="btn-floting" />
+            </Link>
 
             <div className="row">
               {pets.map((pets) => {
@@ -70,8 +75,7 @@ export function Pets() {
                           Age : <b>{pets.age}</b>
                         </p>
                         <p className="card-text">
-                          Specie :{" "}
-                          <b>{pets.specie ? pets.specie : "No Specie"}</b>
+                          Specie : <b>{pets.specie}</b>
                         </p>
                       </div>
                       <div className="card-footer text-center">
