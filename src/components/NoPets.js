@@ -11,10 +11,10 @@ export const NoPets = () => {
         <Col lg={5} md={6} sm={12} className="p-5 m-auto shadow-sm rounded-lg">
           <div className=" text-center">
             <img src={nopets} alt="img" className="img-fluid img" />
-            <h1 className="shawow-sm tex-success mt-5 p-3 text-center rounded init">
+            <h2 className="shawow-sm tex-success mt-5 p-3 text-center rounded init">
               {" "}
-              No Pets Found
-            </h1>
+              Please Add a Pet ! <br />
+            </h2>
             <Container>
               <Row>
                 <Col

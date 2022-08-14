@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { getPets, deletePet } from "../services";
 import { GrUpdate } from "react-icons/gr";
 import { AiFillDelete } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NoPets } from "./NoPets";
+import Swal from "sweetalert2";
 
 export function Pets() {
+  const navigate = useNavigate();
+
   const [pets, setPets] = useState([]);
 
   console.log("pets", pets);
@@ -22,6 +25,26 @@ export function Pets() {
     await deletePet(id);
     const newPets = pets.filter((pet) => pet._id !== id);
     setPets(newPets);
+    Swal.fire({
+      title: "Deleted!",
+      text: "Your file has been deleted.",
+      icon: "warning",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "OK",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "Pet deleted successfully!",
+        }).then((result) => {
+          if (result.value) {
+            navigate("/petslist");
+          }
+        });
+      }
+    });
   };
 
   return (

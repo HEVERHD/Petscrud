@@ -23,7 +23,7 @@ export const Form = () => {
       return;
     }
 
-    if (age < 1 || age > 10) {
+    if (age < 1 || age > 12) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
