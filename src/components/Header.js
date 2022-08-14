@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { About } from "../components/About";
 
 export const Header = () => {
   return (
@@ -31,12 +30,8 @@ export const Header = () => {
               Create Pet
             </Link>
           </Nav>
-          <Link
-            className="nav-link ml-auto mr-2"
-            to="/about"
-            style={{ marginRight: "10px" }}
-          >
-            <About />
+          <Link className="nav-link btn btn-secondary btn-sm" to="/about">
+            About
           </Link>
         </Navbar.Collapse>
       </Container>
