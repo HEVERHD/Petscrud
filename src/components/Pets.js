@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getPets, deletePet } from "../services";
 import { GrUpdate } from "react-icons/gr";
 import { AiFillDelete } from "react-icons/ai";
-import { MdAddCircle } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { NoPets } from "./NoPets";
 import Swal from "sweetalert2";
@@ -50,9 +49,6 @@ export function Pets() {
                 <b> Pets List</b>
               </h1>
             </div>
-            <Link to="/create" className="div-flot">
-              <MdAddCircle className="btn-floting" />
-            </Link>
 
             <div className="row">
               {pets.map((pets) => {
@@ -61,16 +57,11 @@ export function Pets() {
                     className="card-group col-xs-12 col-sm-6 col-md-4 col-lg-3"
                     key={pets._id}
                   >
-                    <div className="card my-3">
-                      <img
-                        src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-                        className=" img-rounded rounded float-left card-img-top img-thumbnail img-fluid"
-                        alt="..."
-                      />
-                      <h5 className="card-title text-center">
-                        <b>Name : {pets.name}</b>
-                      </h5>
+                    <div className="card my-3 shadow-sm border-0 rounded text-center">
                       <div className="card-body">
+                        <h5 className="card-title text-center">
+                          <b>{pets.name}</b>
+                        </h5>
                         <p className="card-text">
                           Age : <b>{pets.age}</b>
                         </p>

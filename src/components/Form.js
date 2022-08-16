@@ -32,7 +32,17 @@ export const Form = () => {
       return;
     }
 
-    if (specie !== "Dog" && specie !== "Cat") {
+    if (
+      specie !== "Dog" &&
+      specie !== "Cat" &&
+      specie !== "Rabbit" &&
+      specie !== "Fishes" &&
+      specie !== "Loro" &&
+      specie !== "Hamster" &&
+      specie !== "Bird" &&
+      specie !== "Miniping " &&
+      specie !== "Other"
+    ) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -107,11 +117,11 @@ export const Form = () => {
                   <option value="">Select a specie</option>
                   <option value="Dog">Dog</option>
                   <option value="Cat">Cat</option>
-                  <option value="Cat">Hamster</option>
-                  <option value="Cat">Loro</option>
-                  <option value="Cat">MiniPing</option>
-                  <option value="Cat">Rabbit</option>
-                  <option value="Cat">Fishes</option>
+                  <option value="Hamster">Hamster</option>
+                  <option value="Loro">Loro</option>
+                  <option value="MiniPing">MiniPing</option>
+                  <option value="Rabbit">Rabbit</option>
+                  <option value="Fishes">Fishes</option>
                 </select>
               </div>
             </form>{" "}

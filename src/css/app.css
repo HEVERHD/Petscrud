@@ -27,23 +27,40 @@
 }
 
 .div-flot {
-  position: fixed;
   width: 60px;
   height: 60px;
-  bottom: 40px;
-  right: 40px;
-
-  border-radius: 50px;
-  text-align: center;
+  border-radius: 100%;
+  background: #77b300;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 36px;
 }
 
 .btn-floting {
-  font-size: 2.9rem;
-  font-weight: bold;
-  color: #77b300;
-  border-radius: 50px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  transition: 0.5s;
+}
+
+@media screen and (max-width: 600px) {
+  .back h1 {
+    font-size: 2rem;
+  }
+  .back h2 {
+    font-size: 1.2rem;
+  }
+
+  .div-flot {
+    width: 40px;
+    height: 40px;
+    bottom: 30px;
+    right: 30px;
+  }
+  .btn-floting {
+    font-size: 2.5rem;
+  }
 }

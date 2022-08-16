@@ -46,15 +46,6 @@ export const Edit = () => {
       return;
     }
 
-    if (specie !== "Dog" && specie !== "Cat") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Specie must be dog or cat!",
-      });
-      return;
-    }
-
     const pet = { name, age, specie };
     const { data } = await updatePet(params.id, pet);
     console.log(data);
@@ -109,6 +100,11 @@ export const Edit = () => {
                   <option value="">Select a specie</option>
                   <option value="Dog">Dog</option>
                   <option value="Cat">Cat</option>
+                  <option value="Hamster">Hamster</option>
+                  <option value="Loro">Loro</option>
+                  <option value="MiniPing">MiniPing</option>
+                  <option value="Rabbit">Rabbit</option>
+                  <option value="Fishes">Fishes</option>
                 </select>
               </div>
               <button type="submit" className="btn btn-primary btn-block">
